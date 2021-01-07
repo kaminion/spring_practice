@@ -3,5 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- Exam exam = new NewlecExam(); -->
+	<!-- id는 클래스 인스턴스의 이름 class는 full qualifying name -->
+	<bean id="exam" class="spring.di.entity.NewlectExam"/>
+	
+	<!-- ExamConsole console = new GridExamConsole(); setter로 수정됨 -->
+	<!--  console.setExam(exam) set은 없애고 앞의 대문자를 소문자로 바꿈 -->		
+	<bean id="console" class="spring.di.ui.GridExamConsole">
+			<property name="exam" ref="exam"></property> <!-- 기본타입이면 value, reference타입이면 ref를 줌	 -->
+	</bean>
+	
 </beans>
