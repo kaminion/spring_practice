@@ -5,11 +5,34 @@
 
 	<!-- Exam exam = new NewlecExam(); -->
 	<!-- id는 클래스 인스턴스의 이름 class는 full qualifying name -->
-	<bean id="exam" class="spring.di.entity.NewlectExam"/>
+	<bean id="exam" class="spring.di.entity.NewlectExam">
+		<!-- exam.setKor(20); 
+			exam.setEng(20);
+			exam.setMath(80);
+		-->
+		<!-- constructor를 이용한 방법, name으로 명시적 설정가능, index를 이용하면 순서를 바꿀수있음 -->
+		<!-- type="float" type="int" 같은 타입지정으로 오버로드도 대처가능 -->
+		
+		<!--   
+		<constructor-arg index="1" value="10"/>
+		<constructor-arg name="kor" value="20"/>
+		<constructor-arg index="3" value="30"/>
+		<constructor-arg index="2" value="40"/>
+		-->
+		
+		<!-- setter를 이용한 방법 -->
+		<!-- <property name="kor">
+			<value>20</value>
+		</property>
+		<property name="eng" value="20"/>
+		<property name="math" value="20"/>
+		<property name="com" value="20"/> -->
+	</bean>
 	
 	<!-- ExamConsole console = new GridExamConsole(); setter로 수정됨 -->
 	<!--  console.setExam(exam) set은 없애고 앞의 대문자를 소문자로 바꿈 -->		
-	<bean id="console" class="spring.di.ui.GridExamConsole">
+	<!-- setting에 선언되어만 있다면 메인 프로그램에서 exam을 주입시킬 필요는 없다. -->
+	<bean id="console" class="spring.di.ui.InlineExamConsole">
 			<property name="exam" ref="exam"></property> <!-- 기본타입이면 value, reference타입이면 ref를 줌	 -->
 	</bean>
 	

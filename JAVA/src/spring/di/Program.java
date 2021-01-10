@@ -1,6 +1,9 @@
 package spring.di;
 
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import spring.di.entity.Exam;
 import spring.di.entity.NewlectExam;
 import spring.di.ui.ExamConsole;
@@ -10,23 +13,28 @@ import spring.di.ui.InlineExamConsole;
 public class Program {
 
 	public static void main(String[] args) {
-		/*Exam exam = new NewlectExam();
-		//ExamConsole console = new InlineExamConsole(exam); // DI
-		ExamConsole console = new GridExamConsole();
-		console.setExam(exam);*/
-		
-		// ApplicationContext Á¾·ù
-		// classPathXML = ¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ ·çÆ®·ÎºÎÅÍ
-		// FileSystemXML = ÇöÀç ÆÄÀÏ½Ã½ºÅÛÀÇ ·çÆ®·ÎºÎÅÍ ½ÃÀÛ
-		// XMLWeb = À¥À» ÅëÇØ ÁöÁ¤
-		// AnnotationConfig ÆÄÀÏÀÌ ¾Æ´Ñ ¾î³ëÅ×ÀÌ¼ÇÀ¸·Î µÎ¾ú´Ù
-		
-		ApplicationContext context =
-				new ClassPathXmlApplicationContext("spring/di/setting.xml");
-		
-		// ½ºÇÁ¸µ¿¡°Ô Áö½ÃÇÏ´Â ÄÚµå·Î º¯°æ
-		ExamConsole console = ?
-		console.print();
+	      /*Exam exam = new NewlectExam();
+	      //ExamConsole console = new InlineExamConsole(exam); // DI
+	      ExamConsole console = new GridExamConsole();
+	      console.setExam(exam);*/
+	      
+	      // ApplicationContext ì¢…ë¥˜
+	      // classPathXML = ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ë£¨íŠ¸ë¡œë¶€í„°
+	      // FileSystemXML = í˜„ì¬ íŒŒì¼ì‹œìŠ¤í…œì˜ ë£¨íŠ¸ë¡œë¶€í„° ì‹œì‘
+	      // XMLWeb = ì›¹ì„ í†µí•´ ì§€ì •
+	      // AnnotationConfig íŒŒì¼ì´ ì•„ë‹Œ ì–´ë…¸í…Œì´ì…˜ìœ¼ë¡œ ë‘ì—ˆë‹¤
+	      ApplicationContext context =
+	            new ClassPathXmlApplicationContext("spring/di/setting.xml");
+	      
+	      // ìŠ¤í”„ë§ì—ê²Œ ì§€ì‹œí•˜ëŠ” ì½”ë“œë¡œ ë³€ê²½
+	      // Object í˜•ìœ¼ë¡œ ë‚˜ì˜¤ê¸°ë•Œë¬¸ì— í˜•ë³€í™˜í•˜ê³ , ì´ë¦„ìœ¼ë¡œ êº¼ë‚¼ ìˆ˜ìˆë‹¤(id)
+//	      ExamConsole console = (ExamConsole) context.getBean("console");
+	      // í˜•ë³€í™˜ X í´ë˜ìŠ¤ëª… ê¹”ë”í•˜ê²Œ ì„¤ì •ê°€ëŠ¥, ëŒ€ì‹  ì§€ì‹œì„œì— ì„ ì–¸ë˜ì–´ìˆì–´ì•¼í•¨
+	      Exam exam = context.getBean(Exam.class);
+	      System.out.println(exam.toString());
+	      
+	      ExamConsole console = context.getBean(ExamConsole.class);
+	      console.print();
 		
 	}
 
